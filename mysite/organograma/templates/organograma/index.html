@@ -22,31 +22,97 @@
 </div>
 
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        {% if orgaos %}
-        {% for orgao in orgaos %}
-        <div class="col-lg-4">
-            <div class="contact-box">
-                <a href="{% url 'detail' orgao.id %}">
-                    <div class="col-sm-4">
-                        <div class="text-center">
-                            <img alt="image" class="img-circle m-t-xs img-responsive" src="/static/img/a2.jpg">
-                            <div class="m-t-xs font-bold">{{ orgao.funcao }}</div>
-                        </div>
+
+    <div class="row m-b-lg m-t-lg">
+        <div class="col-md-6">
+
+            <div class="profile-image">
+                <img alt="image" class="img-circle circle-border m-b-md" src="data:image/png;base64, {{ secretaria.get_foto }}"/>
+            </div>
+            <div class="profile-info">
+                <div class="">
+                    <div>
+                        <h2 class="no-margins">
+                            {{ secretaria.responsavel }}
+                        </h2>
+                        <h4>{{ secretaria.nome }}</h4>
+                        <small>
+                            There are many variations of passages of Lorem Ipsum available, but the majority
+                            have suffered alteration in some form Ipsum available.
+                        </small>
                     </div>
-                    <div class="col-sm-8">
-                        <h3><strong>{{ orgao.nome }}</strong></h3>
-                        <p><i class="fa fa-map-marker"></i> {{ orgao.local }}</p>
-                        <address>
-                            <strong>Twitter, Inc.</strong><br>
-                            <abbr title="Phone">P:</abbr> (123) 456-7890
-                        </address>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
+                </div>
             </div>
         </div>
-        {% endfor %}
+        <div class="col-md-3">
+            <table class="table small m-b-xs">
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>142</strong> Projects
+                    </td>
+                    <td>
+                        <strong>22</strong> Followers
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <strong>61</strong> Comments
+                    </td>
+                    <td>
+                        <strong>54</strong> Articles
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>154</strong> Tags
+                    </td>
+                    <td>
+                        <strong>32</strong> Friends
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <small>Sales in last 24h</small>
+            <h2 class="no-margins">206 480</h2>
+            <div id="sparkline1"></div>
+        </div>
+
+</div>
+
+    <div class="row">
+        {% if orgaos %}
+            {% for orgao in orgaos %}
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="{% url 'detail' orgao.id %}">
+                        <div class="col-sm-4">
+                            <div class="profile-image">
+                                {% if orgao.foto %}
+                                <img alt="image" class="img-circle m-t-xs img-responsive"src="data:image/png;base64, {{ orgao.get_foto }}"/>
+                                {% else %}
+                                <img alt="image" class="img-circle m-t-xs img-responsive" src="/static/img/a8.jpg">
+                                {% endif %}
+                                <!--<div class="m-t-xs font-bold">{{ orgao.funcao }}</div>-->
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <h3><strong>{{ orgao.nome }}</strong></h3>
+                            <p><i class="fa fa-map-marker"></i> {{ orgao.local }}</p>
+                            <address>
+                                <strong>{{ orgao.responsavel }}</strong><br>
+                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                            </address>
+                            <div class="m-t-xs font-bold">{{ orgao.funcao }}</div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         {% else %}
         <p>Nenhum Orgão cadastrado.</p>
         {% endif %}

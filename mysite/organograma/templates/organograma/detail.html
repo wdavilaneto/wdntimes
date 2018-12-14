@@ -26,8 +26,8 @@
                 </div>
                 <div class="ibox-content">
                     <div class="team-members">
-                        {% for time in time.pessoa_set.all %}
-                        <a href="#"><img alt="member" class="img-circle" src="/static/img/a1.jpg"></a>
+                        {% for pessoa in time.pessoa_set.all %}
+                        <a href="#"><img alt="member" class="img-circle" src="data:image/png;base64, {{ pessoa.get_foto }}"/></a>
                         {% endfor %}
                     </div>
                     {% if time.projeto_atual %}

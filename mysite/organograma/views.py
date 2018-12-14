@@ -7,8 +7,15 @@ from .models import *
 
 
 def index(request):
-    orgaos = Orgao.objects.order_by('nome')
-    return render(request, 'organograma/index.html', context={'orgaos': orgaos, })
+    orgaos = Orgao.objects.order_by('-nome',)
+    secretaria = {}
+    result = []
+    for each in orgaos:
+        if each.nome == 'SECRETARIA DE TECNOLOGIA DA INFORMAÇÃO E DE COMUNICAÇÃO':
+            secretaria = each
+        else:
+            result.append(each)
+    return render(request, 'organograma/index.html', context={'orgaos': result, 'secretaria': secretaria },)
 
 
 def detail(request, orgao_id):

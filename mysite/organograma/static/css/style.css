@@ -3945,6 +3945,7 @@ code {
   border-image: none;
   border-style: solid solid none;
   border-width: 1px 0;
+  min-height: 230px;
 }
 .ibox-footer {
   color: inherit;
@@ -4632,6 +4633,7 @@ body.mini-navbar.fixed-sidebar .logo-element {
   border: 1px solid #e7eaec;
   padding: 20px;
   margin-bottom: 20px;
+  min-height: 212px;
 }
 .contact-box > a {
   color: inherit;
