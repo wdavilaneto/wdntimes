@@ -3,14 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Orgao
+from .models import *
 
 
 def index(request):
     orgaos = Orgao.objects.order_by('nome')
-    template = loader.get_template('organograma/index.html')
-    context = {'orgaos': orgaos, }
-    return render(request, 'organograma/index.html', context)
+    return render(request, 'organograma/index.html', context={'orgaos': orgaos, })
 
 
 def detail(request, orgao_id):
@@ -25,3 +23,13 @@ def results(request, orgao_id):
 
 def time(request, orgao_id):
     return HttpResponse("You're voting on orgao %s." % orgao_id)
+
+
+def projetos(request):
+    projetos = Projeto.objects.order_by('nome')
+    return render(request, 'organograma/projetos.html', {'projetos': projetos})
+
+def projeto(request, projeto_id):
+    projeto = get_object_or_404(Projeto, pk=projeto_id)
+    return render(request, 'organograma/projeto.html', {'projeto': projeto})
+

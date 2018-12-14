@@ -31,16 +31,14 @@
                     <div class="col-sm-4">
                         <div class="text-center">
                             <img alt="image" class="img-circle m-t-xs img-responsive" src="/static/img/a2.jpg">
-                            <div class="m-t-xs font-bold">Graphics designer</div>
+                            <div class="m-t-xs font-bold">{{ orgao.funcao }}</div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <h3><strong>{{ orgao.nome }}</strong></h3>
-                        <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
+                        <p><i class="fa fa-map-marker"></i> {{ orgao.local }}</p>
                         <address>
                             <strong>Twitter, Inc.</strong><br>
-                            795 Folsom Ave, Suite 600<br>
-                            San Francisco, CA 94107<br>
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
@@ -50,7 +48,7 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>No polls are available.</p>
+        <p>Nenhum Orgão cadastrado.</p>
         {% endif %}
 
     </div>
