@@ -1,8 +1,7 @@
 django
-psycopg2
+psycopg2-binary
 pandas
 xlrd
 requests
 python-gitlab
-beautifulsoup4
-html5lib
+gunicorn
