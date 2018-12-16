@@ -1,3 +1,8 @@
 django
 psycopg2
-cx_Oracle
+pandas
+xlrd
+requests
+python-gitlab
+beautifulsoup4
+html5lib

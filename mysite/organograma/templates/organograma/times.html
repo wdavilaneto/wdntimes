@@ -3,14 +3,14 @@
 {% block content %}
 
 <div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>{{ orgao.nome }} - TIMES</h2>
+    <div class="col-sm-10">
+        <h2>{{ orgao.nome }}</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="/organograma">Organograma</a>
+                <a href="/organograma">STIC</a>
             </li>
             <li class="active">
-                <strong>Teams board</strong>
+                <strong>Times</strong>
             </li>
         </ol>
     </div>
@@ -21,39 +21,48 @@
         <div class="col-lg-4">
             <div class="ibox">
                 <div class="ibox-title">
-                    <span class="label label-primary pull-right">NEW</span>
+                    {% if time.projeto_atual %}
+                    <span class="label label-primary pull-right">{{time.projeto_atual.natureza}}</span>
+                    {% endif %}
                     <h5>IT-0{{time.id}} - {{time.nome}}</h5>
                 </div>
                 <div class="ibox-content">
                     <div class="team-members">
                         {% for pessoa in time.pessoa_set.all %}
-                        <a href="#"><img alt="member" class="img-circle" src="data:image/png;base64, {{ pessoa.get_foto }}"/></a>
+                        {% if orgao.foto %}
+                        <a href="/organograma/perfil/{{pessoa.id}}"><img alt="member" class="img-circle" src="data:image/png;base64, {{ pessoa.get_foto }}"/></a>
+                        {% else %}
+                        <a href="/organograma/perfil/{{pessoa.id}}"><img alt="member" class="img-circle" src="/static/img/a3.jpg"/></a>
+                        {% endif %}
                         {% endfor %}
                     </div>
                     {% if time.projeto_atual %}
-                    <h4>{{ time.projeto_atual.natureza }} </h4>
+                    <a href="/organograma/projetos/{{ time.projeto_atual.id }}">
+                        <h4>{{ time.projeto_atual.nome }} </h4>
+                    </a>
+                    <h4>{{ time.projeto_atual.responsavel }} </h4>
                     <p>
                         {{ time.projeto_atual.texto }}
                     </p>
                     <div>
                         <span>Andamento do Projeto:</span>
-                        <div class="stat-percent">  {{ time.projeto_atual.andamento }}%</div>
+                        <div class="stat-percent"> {{ time.projeto_atual.andamento }}%</div>
                         <div class="progress progress-mini">
-                            <div style="width:   {{ time.projeto_atual.andamento }}%;" class="progress-bar"></div>
+                            <div style="width: {{ time.projeto_atual.andamento }}%;" class="progress-bar"></div>
                         </div>
                     </div>
                     <div class="row  m-t-sm">
                         <div class="col-sm-3">
                             <div class="font-bold">Release</div>
-                              {{ time.projeto_atual.release }}
+                            {{ time.projeto_atual.release }}
                         </div>
                         <div class="col-sm-3">
-                            <div class="font-bold">RANKING</div>
-                            1th
+                            <div class="font-bold">Release</div>
+                            {{ time.projeto_atual.get_next_release}}
                         </div>
                         <div class="col-sm-6 text-right">
                             <div class="font-bold">CUSTO</div>
-                            R$  {{ time.projeto_atual.custo }} <i class="fa fa-level-up text-navy"></i>
+                            R$ {{ time.projeto_atual.custo }} <i class="fa fa-level-up text-navy"></i>
                         </div>
                     </div>
                     {% endif %}
