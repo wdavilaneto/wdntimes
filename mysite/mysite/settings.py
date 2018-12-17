@@ -87,14 +87,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         'PORT': '5432',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sgfmqpzj',
+#         'USER': 'sgfmqpzj',
+#         'PASSWORD': 'YrB-Ge294Cn9buQQGD665hSUbZaCRy9Y',
+#         'HOST': 'elmer.db.elephantsql.com',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sgfmqpzj',
-        'USER': 'sgfmqpzj',
-        'PASSWORD': 'YrB-Ge294Cn9buQQGD665hSUbZaCRy9Y',
-        'HOST': 'elmer.db.elephantsql.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'sqlite3.db',
     }
 }
 
